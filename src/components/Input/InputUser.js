@@ -1,25 +1,31 @@
-import { useState, Fragment } from "react";
+import { useState, Fragment, useRef } from "react";
 import styles from "./InputUser.module.css";
 import Button from "../UI/Button/Button";
 import InvalidUsernameAge from "../UI/InvalidUser/InvalidUsernameAge";
 
 const InputUser = (props) => {
-  const [enteredUsername, setEnteredUsername] = useState("");
-  const [enteredAge, setEnteredAge] = useState("");
+  // const [enteredUsername, setEnteredUsername] = useState("");
+  // const [enteredAge, setEnteredAge] = useState("");
   const [error, setError] = useState();
 
-  const enterUsernameHandler = (event) => {
-    // console.log(event.target.value);
-    setEnteredUsername(event.target.value);
-  };
+  const userInputRef = useRef();
+  const ageInputRef = useRef();
 
-  const enterAgeHandler = (event) => {
-    // console.log(event.target.value);
-    setEnteredAge(event.target.value);
-  };
+  // const enterUsernameHandler = (event) => {
+  //   // console.log(event.target.value);
+  //   setEnteredUsername(event.target.value);
+  // };
+
+  // const enterAgeHandler = (event) => {
+  //   // console.log(event.target.value);
+  //   setEnteredAge(event.target.value);
+  // };
 
   const inputUserSubmit = (event) => {
     event.preventDefault();
+
+    const enteredUsername = userInputRef.current.value;
+    const enteredAge = ageInputRef.current.value;
 
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
       setError({
@@ -43,13 +49,17 @@ const InputUser = (props) => {
       id: Math.round(Math.random() * 1000).toString(),
     };
     props.onGetUser(user);
-    setEnteredUsername("");
-    setEnteredAge("");
+
+    userInputRef.current.value = "";
+    ageInputRef.current.value = "";
+    // setEnteredUsername("");
+    // setEnteredAge("");
   };
 
   const errorHandler = () => {
     setError(null);
-    setEnteredAge("");
+    ageInputRef.current.value = "";
+    // setEnteredAge("");
   };
 
   return (
@@ -68,8 +78,9 @@ const InputUser = (props) => {
             <input
               id="username"
               type="text"
-              value={enteredUsername}
-              onChange={enterUsernameHandler}
+              ref={userInputRef}
+              // value={enteredUsername}
+              // onChange={enterUsernameHandler}
             />
           </div>
           <div className={styles.ageDiv}>
@@ -77,8 +88,9 @@ const InputUser = (props) => {
             <input
               id="age"
               type="number"
-              value={enteredAge}
-              onChange={enterAgeHandler}
+              ref={ageInputRef}
+              // value={enteredAge}
+              // onChange={enterAgeHandler}
             />
           </div>
           <Button name="Add User" type="submit" />
