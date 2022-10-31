@@ -1,6 +1,6 @@
-import { useState } from "react";
-import InputUser from "./components/InputUser";
-import OutputUser from "./components/OutputUser";
+import { useState, Fragment } from "react";
+import InputUser from "./components/Input/InputUser";
+import OutputUser from "./components/Output/OutputUser";
 // import InvalidUsernameAge from "./components/InvalidUsernameAge";
 
 const users = [];
@@ -21,10 +21,10 @@ function App() {
   }
 
   return (
-    <div>
+    <Fragment>
       <InputUser onGetUser={getInputDataHandler} />
       {output}
-    </div>
+    </Fragment>
   );
 }
 

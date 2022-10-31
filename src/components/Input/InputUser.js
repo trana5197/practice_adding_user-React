@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import styles from "./InputUser.module.css";
-import Button from "./UI/Button";
-import InvalidUsernameAge from "./InvalidUsernameAge";
+import Button from "../UI/Button/Button";
+import InvalidUsernameAge from "../UI/InvalidUser/InvalidUsernameAge";
 
 const InputUser = (props) => {
   const [enteredUsername, setEnteredUsername] = useState("");
@@ -53,7 +53,7 @@ const InputUser = (props) => {
   };
 
   return (
-    <div>
+    <Fragment>
       {error && (
         <InvalidUsernameAge
           title={error.title}
@@ -84,7 +84,7 @@ const InputUser = (props) => {
           <Button name="Add User" type="submit" />
         </form>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

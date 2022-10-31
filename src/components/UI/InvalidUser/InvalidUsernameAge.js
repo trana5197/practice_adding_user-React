@@ -1,9 +1,10 @@
 import styles from "./InvalidUsernameAge.module.css";
-import Button from "./UI/Button";
+import Button from "../Button/Button";
+import { Fragment } from "react";
 
 const InvalidUsernameAge = (props) => {
   return (
-    <div>
+    <Fragment>
       <div className={styles.backdrop} onClick={props.onConfirm} />
       <div className={styles.modal}>
         <header className={styles.header}>
@@ -16,7 +17,7 @@ const InvalidUsernameAge = (props) => {
           <Button name="Okay" onClick={props.onConfirm}></Button>
         </footer>
       </div>
-    </div>
+    </Fragment>
   );
 };
 
